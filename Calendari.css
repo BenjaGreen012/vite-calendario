@@ -1,0 +1,44 @@
+.calendari {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+    font-family: Arial, sans-serif;
+  }
+  
+  .month {
+    margin-bottom: 20px;
+  }
+  
+  .month h3 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+  }
+  
+  .days-of-week {
+    display: flex;
+    justify-content: space-around;
+    background-color: #f0f0f0;
+    padding: 5px 0;
+  }
+  
+  .day-name {
+    width: 100%;
+    font-weight: bold;
+  }
+  
+  .days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 10px;
+  }
+  
+  .carta {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 10px;
+  }
+  
+  .empty {
+    visibility: hidden;
+  }
+  
