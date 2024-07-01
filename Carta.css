@@ -1,0 +1,32 @@
+.carta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s;
+  }
+  
+  .carta:hover {
+    background-color: #e0e0e0;
+  }
+  
+  .carta.empty {
+    visibility: hidden;
+  }
+  
+  .day-name {
+    font-weight: bold;
+    background-color: #f4f4f4;
+  }
+  
+  .carta.previous-month {
+    background-color: #f0f0f0; /* Color para los días del mes anterior */
+  }
+  
+  .carta.next-month {
+    background-color: #ececec; /* Color para los días del mes siguiente */
+  }
+  
