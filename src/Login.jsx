@@ -11,7 +11,7 @@ const UserList = () => {
   const [loggedIn, setLoggedIn] = useState(false); 
 
   const receptesController = new ReceptesController();
-
+  
   useEffect(() => {
     const fetchUsers = async () => {
       try {
@@ -59,11 +59,21 @@ const UserList = () => {
     }
   };
 
+  const handleLogout = () => {
+    setSelectedUserId(null);
+    setFilteredUsers([]);
+    setLoggedIn(false);
+    setSearchUsername('');
+    setSearchPassword('');
+    localStorage.removeItem('loggedInUser');
+  };
+
   if (loggedIn) {
     return (
       <div>
         <h1>Login</h1>
         <p>¡Logueado correctamente!</p>
+        <button onClick={handleLogout}>Cerrar sesión</button>
       </div>
     );
   }
