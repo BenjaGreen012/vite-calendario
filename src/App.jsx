@@ -1,12 +1,8 @@
-import Register from "./Register"
-import Login from "./Login"
-import Calendari from "./Calendari"
+import Calendari from "./components/Calendari"
 function App() {
 
   return (
     <>
-      <Register />
-      <Login />
       <Calendari/>
     </>
   )
