@@ -91,24 +91,27 @@ const Calendari = () => {
   return (
     <>
       <div className='containerCalendar'>
-        <div className='buttonsContainer'>
-          <a class="fancy" onClick={handlePreviousMonth}>
-            <span class="top-key"></span>
-            <span class="text">PREVIOUS</span>
-            <span class="bottom-key-1"></span>
-            <span class="bottom-key-2"></span>
-          </a>
-          <h3 className='monthAndYearTitle'>{months[currentMonth]} {currentYear}</h3>
-          <a class="fancy" onClick={handleNextMonth}>
-            <span class="top-key"></span>
-            <span class="text">NEXT</span>
-            <span class="bottom-key-1"></span>
-            <span class="bottom-key-2"></span>
-          </a>
-        </div>
-
-        <div className="calendari">
-          {renderCalendari()}
+        <div className='rightContainer'>
+          <div className='buttonsContainer'>
+            <a className="fancy" onClick={handlePreviousMonth}>
+              <span className="top-key"></span>
+              <span className="text">PREVIOUS</span>
+              <span className="bottom-key-1"></span>
+              <span className="bottom-key-2"></span>
+            </a>
+            <h3 className='monthAndYearTitle'>
+              {months[currentMonth]} {currentYear}
+            </h3>
+            <a className="fancy" onClick={handleNextMonth}>
+              <span className="top-key"></span>
+              <span className="text">NEXT</span>
+              <span className="bottom-key-1"></span>
+              <span className="bottom-key-2"></span>
+            </a>
+          </div>
+          <div className="calendari">
+            {renderCalendari()}
+          </div>
         </div>
       </div>
     </>

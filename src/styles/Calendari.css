@@ -1,5 +1,5 @@
 .containerCalendar {
-  background-image: url("./fondos/fondo.webp");
+  background-image: url("./fondos/fondoMain.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   height: 100vh;
@@ -7,21 +7,19 @@
   display: flex;
   padding: 10px;
 }
+.rightContainer {
+  display: flex;
+  flex-direction: column;
+}
 
 .calendari {
   max-width: 600px;
   margin: auto;
   text-align: center;
   font-family: Arial, sans-serif;
-  
+  backdrop-filter:  brightness(90%);
   text-align: center;
   padding-top: 10px;
-}
-
-.monthAndYearTitle {
-  text-align: center;
-  padding-top: 10px;
-  margin: auto;
 }
 
 .month {
@@ -38,9 +36,14 @@
   grid-template-columns: repeat(7, 1fr);
   gap: 5px;
   padding: 5px 0;
+  margin-bottom: 10px;
+  border-bottom: 2px solid black;
 }
 
 .day-name {
+  background-color: transparent;
+  color: black;
+  text-shadow: 2px 2px 4px white;
   width: 100%;
   font-weight: bold;
 }
@@ -48,6 +51,13 @@
 .days {
   display: grid;
   color: white;
+  text-shadow:
+    3px 3px 0 #000,
+    -3px 3px 0 #000,
+    -3px -3px 0 #000,
+    3px -3px 0 #000;
+  font-weight: bold;
+  font-size: 20px;
   grid-template-columns: repeat(7, 1fr);
   gap: 10px;
 }
@@ -58,9 +68,10 @@
   background-repeat: no-repeat;
   background-size: cover;
   height: 70px;
-  border: 1px solid #ccc;
+  border: 1px solid white;
   padding: 10px;
   backdrop-filter: blur(10px);
+  border-radius: 50%;
 }
 
 .empty {
@@ -70,10 +81,15 @@
 .buttonsContainer {
   display: flex;
   flex-direction: row;
-  justify-content: center;
   max-width: 600px;
-  margin: 0 auto;
-  text-align: center; 
-  padding-top: 10px;
   margin: auto;
+  height: fit-content;
+  justify-content: center;
+  align-items: center;
+}
+
+.monthAndYearTitle {
+  border-bottom: 2px solid black;
+  color: white;
+  text-shadow: 2px 2px black;
 }
