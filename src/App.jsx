@@ -18,7 +18,6 @@ function App() {
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="me-auto">
-                <NavLink to="/caledari" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>Caledari</NavLink>
                 {user === null ? (
                   <>
                     <NavLink to="/login" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>Login</NavLink>
