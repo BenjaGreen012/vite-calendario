@@ -1,12 +1,8 @@
 import React from 'react';
 import './Carta.css';
 
-const Carta = ({ day, isEmpty, isPreviousMonth, isNextMonth }) => {
+const Carta = ({ day, isEmpty, isPreviousMonth, isNextMonth, note }) => {
   let cartaClass = 'carta';
-  
-//   if (isEmpty) {
-//     cartaClass += ' empty';
-//   }
   
   if (isPreviousMonth) {
     cartaClass += ' previous-month';
@@ -18,7 +14,8 @@ const Carta = ({ day, isEmpty, isPreviousMonth, isNextMonth }) => {
 
   return (
     <div className={cartaClass}>
-      {day}
+      <div className="day-number">{day}</div>
+      {note && <div className="note">{note}</div>}
     </div>
   );
 };

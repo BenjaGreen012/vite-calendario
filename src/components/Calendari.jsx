@@ -16,6 +16,8 @@ const getDaysInMonth = (month, year) => {
 const Calendari = () => {
   const [currentMonth, setCurrentMonth] = useState(new Date().getMonth());
   const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
+  const [notes, setNotes] = useState({});
+  const [currentNote, setCurrentNote] = useState('');
 
   const handlePreviousMonth = () => {
     if (currentMonth === 0) {
@@ -33,6 +35,16 @@ const Calendari = () => {
     } else {
       setCurrentMonth(currentMonth + 1);
     }
+  };
+
+  const handleAddNote = (event) => {
+    event.preventDefault();
+    const day = event.target.dataset.day;
+    setNotes({
+      ...notes,
+      [`${currentYear}-${currentMonth}-${day}`]: currentNote,
+    });
+    setCurrentNote('');
   };
 
   const renderCalendari = () => {
@@ -67,7 +79,8 @@ const Calendari = () => {
 
     // Add all days of the current month
     for (let day = 1; day <= daysInMonth; day++) {
-      days.push(<Carta key={`day-${day}`} day={day} isEmpty={false} />);
+      const note = notes[`${currentYear}-${currentMonth}-${day}`];
+      days.push(<Carta key={`day-${day}`} day={day} isEmpty={false} note={note} />);
     }
 
     // Add empty days for the last week
@@ -77,7 +90,6 @@ const Calendari = () => {
 
     return (
       <div className="month">
-
         <div className="days-of-week">
           {daysOfWeek.map(day => <div key={day} className="day-name">{day}</div>)}
         </div>
@@ -92,20 +104,30 @@ const Calendari = () => {
     <>
       <div className='containerCalendar'>
         <div className='buttonsContainer'>
-          <a class="fancy" onClick={handlePreviousMonth}>
-            <span class="top-key"></span>
-            <span class="text">PREVIOUS</span>
-            <span class="bottom-key-1"></span>
-            <span class="bottom-key-2"></span>
+          <a className="fancy" onClick={handlePreviousMonth}>
+            <span className="top-key"></span>
+            <span className="text">PREVIOUS</span>
+            <span className="bottom-key-1"></span>
+            <span className="bottom-key-2"></span>
           </a>
           <h3 className='monthAndYearTitle'>{months[currentMonth]} {currentYear}</h3>
-          <a class="fancy" onClick={handleNextMonth}>
-            <span class="top-key"></span>
-            <span class="text">NEXT</span>
-            <span class="bottom-key-1"></span>
-            <span class="bottom-key-2"></span>
+          <a className="fancy" onClick={handleNextMonth}>
+            <span className="top-key"></span>
+            <span className="text">NEXT</span>
+            <span className="bottom-key-1"></span>
+            <span className="bottom-key-2"></span>
           </a>
         </div>
+
+        <form className='note-form' onSubmit={handleAddNote}>
+          <textarea 
+            value={currentNote} 
+            onChange={(e) => setCurrentNote(e.target.value)} 
+            placeholder="Add a note" 
+            className="note-input"
+          />
+          <button type="submit" data-day={new Date().getDate()} className="add-note-button">Add Note</button>
+        </form>
 
         <div className="calendari">
           {renderCalendari()}
