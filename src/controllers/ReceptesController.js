@@ -34,7 +34,7 @@ class ReceptesController {
         return data;
     }
 
-    async getNotasByDate(fecha, userId) {
+    async getNotaByIdDate(fecha, userId) {
         const response = await fetch(`${APINotas}`, {
             method: 'GET',
             headers: {
@@ -42,9 +42,11 @@ class ReceptesController {
                 'xc-token': this.token
             }
         });
+        const data = await response.json();
+        return data;
     }
 
-    async updateNota(fecha, record, userId) {
+    async createNota(fecha, record, userId) {
         const response = await fetch(`${APINotas}`, {
             method: 'POST',
             headers: {
@@ -52,11 +54,14 @@ class ReceptesController {
                 'xc-token': this.token
             },
             body: JSON.stringify({
-                date: fecha,
+                fecha: fecha,
                 record: record,
                 userId: userId
             })
         });
+
+        const data = await response.json();
+        return data;
        
     }
 

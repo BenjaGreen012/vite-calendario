@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import Carta from '../Carta';
+import ReceptesController from '../controllers/ReceptesController';
+import LoginContext from './LoginContext';
+import { useContext } from 'react';
 import '../styles/Calendari.css';
 import '../styles/ButtonNextBack.css';
 
@@ -18,6 +21,9 @@ const Calendari = () => {
   const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
   const [notes, setNotes] = useState({});
   const [Nota, setNota] = useState('');
+  const { user } = useContext(LoginContext);
+  const [fecha, setFecha] = useState(new Date());
+  const receptesController = new ReceptesController();
 
   const handlePreviousMonth = () => {
     if (currentMonth === 0) {
@@ -39,12 +45,7 @@ const Calendari = () => {
 
   const handleAddNote = (event) => {
     event.preventDefault();
-    const day = event.target.dataset.day;
-    setNotes({
-      ...notes,
-      [`${currentYear}-${currentMonth}-${day}`]: Nota,
-    });
-    setNota('');
+    receptesController.createNota(fecha, Nota, user.Id);
   };
 
   const renderCalendari = () => {
@@ -122,13 +123,15 @@ const Calendari = () => {
             </a>
           </div>
                   <form className='note-form' onSubmit={handleAddNote}>
+            <input type='date' value={fecha} onChange={(e) => setFecha(e.target.value)}></input>
           <textarea 
-            value={Nota} 
+            value={Nota}
+        //    defaultValue={Nota} 
             onChange={(e) => setNota(e.target.value)} 
             placeholder="Add a note" 
             className="note-input"
           />
-          <button type="submit" data-day={new Date().getDate()} className="add-note-button">Add Note</button>
+          <button onClick={handleAddNote} className="add-note-button">Add Note</button>
         </form>
           <div className="calendari">
             {renderCalendari()}
