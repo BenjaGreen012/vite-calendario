@@ -30,10 +30,7 @@ function App() {
             </Navbar.Collapse>
           </Container>
         </Navbar>
-        <br />
-        <Container>
           <Outlet />
-        </Container>
       </LoginContext.Provider>
     </>
   );
