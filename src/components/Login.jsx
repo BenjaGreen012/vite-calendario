@@ -1,33 +1,33 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import ReceptesController from '../controllers/ReceptesController';
+import { useContext } from 'react';
+import LoginContext from './LoginContext';
+
 
 const UserList = () => {
+
+
   const [users, setUsers] = useState([]);
   const [filteredUsers, setFilteredUsers] = useState([]);
   const [error, setError] = useState(null);
   const [searchUsername, setSearchUsername] = useState('');
   const [searchPassword, setSearchPassword] = useState('');
-  const [selectedUserId, setSelectedUserId] = useState(null); 
-  const [loggedIn, setLoggedIn] = useState(false); 
+  const [selectedUserId, setSelectedUserId] = useState(null);
+  const [loggedIn, setLoggedIn] = useState(false);
+
+  const { user, setUser } = useContext(LoginContext);
 
   const receptesController = new ReceptesController();
-  
+  const navigate = useNavigate();
+
   useEffect(() => {
     const fetchUsers = async () => {
       try {
         const usersArray = await receptesController.getAllUsers();
         setUsers(usersArray);
         setFilteredUsers(usersArray);
-        
-        // Verificar si hay un usuario logueado en el localStorage
-        const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
-        if (loggedInUser) {
-          const foundUser = usersArray.find(user => user.id === loggedInUser.id);
-          if (foundUser) {
-            setSelectedUserId(foundUser.id);
-            setLoggedIn(true);
-          }
-        }
+
       } catch (error) {
         setError('Error al obtener la lista de usuarios.');
         console.error('Error fetching users:', error);
@@ -45,27 +45,25 @@ const UserList = () => {
       setFilteredUsers(filtered);
       setLoggedIn(true);
       setError(null);
-      
-      // Guardar el usuario logueado en localStorage
-      localStorage.setItem('loggedInUser', JSON.stringify(filtered[0]));
+      setUser(filtered[0]);
+
     } else {
       setSelectedUserId(null);
       setFilteredUsers([]);
       setLoggedIn(false);
       setError('Usuario o contraseña incorrecta.');
-      
-      // Limpiar el localStorage si hay error
-      localStorage.removeItem('loggedInUser');
     }
   };
 
   const handleLogout = () => {
-    setSelectedUserId(null);
-    setFilteredUsers([]);
-    setLoggedIn(false);
-    setSearchUsername('');
-    setSearchPassword('');
-    localStorage.removeItem('loggedInUser');
+    setUser(null);
+  };
+
+  const handleRegister = () => {
+    navigate('/register');
+  };
+  const handleIrCalendario = () => {
+    navigate('/caledari');
   };
 
   if (loggedIn) {
@@ -74,6 +72,7 @@ const UserList = () => {
         <h1>Login</h1>
         <p>¡Logueado correctamente!</p>
         <button onClick={handleLogout}>Cerrar sesión</button>
+        <button onClick={handleIrCalendario}>Ir a Calendario</button>
       </div>
     );
   }
@@ -95,6 +94,7 @@ const UserList = () => {
           onChange={(e) => setSearchPassword(e.target.value)}
         />
         <button onClick={handleSearch}>Login</button>
+        <button onClick={handleRegister}>Register</button>
       </div>
       {error && <p style={{ color: 'red' }}>{error}</p>}
     </div>
