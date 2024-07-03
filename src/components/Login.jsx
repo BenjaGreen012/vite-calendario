@@ -46,7 +46,6 @@ const UserList = () => {
       setLoggedIn(true);
       setError(null);
       setUser(filtered[0]);
-
     } else {
       setSelectedUserId(null);
       setFilteredUsers([]);
@@ -63,7 +62,7 @@ const UserList = () => {
     navigate('/register');
   };
   const handleIrCalendario = () => {
-    navigate('/caledari');
+    navigate('/');
   };
 
   if (loggedIn) {
@@ -71,7 +70,6 @@ const UserList = () => {
       <div>
         <h1>Login</h1>
         <p>¡Logueado correctamente!</p>
-        <button onClick={handleLogout}>Cerrar sesión</button>
         <button onClick={handleIrCalendario}>Ir a Calendario</button>
       </div>
     );
