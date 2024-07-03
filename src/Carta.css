@@ -30,3 +30,28 @@
     background-color: #ececec; /* Color para los días del mes siguiente */
   }
   
+  /* Carta.css */
+
+.carta {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 8px;
+  margin: 5px;
+  min-height: 50px;
+  display: flex;
+  flex-direction: column;
+}
+
+.carta.previous-month, .carta.next-month {
+  color: #999;
+}
+
+.day-number {
+  font-weight: bold;
+}
+
+.note {
+  margin-top: 5px;
+  font-size: 12px;
+  color: #333;
+}

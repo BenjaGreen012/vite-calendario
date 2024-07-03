@@ -16,6 +16,8 @@ const getDaysInMonth = (month, year) => {
 const Calendari = () => {
   const [currentMonth, setCurrentMonth] = useState(new Date().getMonth());
   const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
+  const [notes, setNotes] = useState({});
+  const [Nota, setNota] = useState('');
 
   const handlePreviousMonth = () => {
     if (currentMonth === 0) {
@@ -33,6 +35,16 @@ const Calendari = () => {
     } else {
       setCurrentMonth(currentMonth + 1);
     }
+  };
+
+  const handleAddNote = (event) => {
+    event.preventDefault();
+    const day = event.target.dataset.day;
+    setNotes({
+      ...notes,
+      [`${currentYear}-${currentMonth}-${day}`]: Nota,
+    });
+    setNota('');
   };
 
   const renderCalendari = () => {
@@ -67,7 +79,8 @@ const Calendari = () => {
 
     // Add all days of the current month
     for (let day = 1; day <= daysInMonth; day++) {
-      days.push(<Carta key={`day-${day}`} day={day} isEmpty={false} />);
+      const note = notes[`${currentYear}-${currentMonth}-${day}`];
+      days.push(<Carta key={`day-${day}`} day={day} isEmpty={false} note={note} />);
     }
 
     // Add empty days for the last week
@@ -77,7 +90,6 @@ const Calendari = () => {
 
     return (
       <div className="month">
-
         <div className="days-of-week">
           {daysOfWeek.map(day => <div key={day} className="day-name">{day}</div>)}
         </div>
@@ -109,6 +121,15 @@ const Calendari = () => {
               <span className="bottom-key-2"></span>
             </a>
           </div>
+                  <form className='note-form' onSubmit={handleAddNote}>
+          <textarea 
+            value={Nota} 
+            onChange={(e) => setNota(e.target.value)} 
+            placeholder="Add a note" 
+            className="note-input"
+          />
+          <button type="submit" data-day={new Date().getDate()} className="add-note-button">Add Note</button>
+        </form>
           <div className="calendari">
             {renderCalendari()}
           </div>
