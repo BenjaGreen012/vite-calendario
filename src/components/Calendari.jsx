@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import Carta from './Carta';
-import './Calendari.css';
+import Carta from '../Carta';
+import '../styles/Calendari.css';
+import '../styles/ButtonNextBack.css';
 
 const daysOfWeek = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'];
 const months = [
@@ -76,9 +77,9 @@ const Calendari = () => {
 
     return (
       <div className="month">
-        <h3>{months[currentMonth]} {currentYear}</h3>
+
         <div className="days-of-week">
-          {daysOfWeek.map(day => <div key={day} className="carta day-name">{day}</div>)}
+          {daysOfWeek.map(day => <div key={day} className="day-name">{day}</div>)}
         </div>
         <div className="days">
           {days}
@@ -88,11 +89,29 @@ const Calendari = () => {
   };
 
   return (
-    <div className="calendari">
-      <button onClick={handlePreviousMonth}>Anterior</button>
-      <button onClick={handleNextMonth}>Siguiente</button>
-      {renderCalendari()}
-    </div>
+    <>
+      <div className='containerCalendar'>
+        <div className='buttonsContainer'>
+          <a class="fancy" onClick={handlePreviousMonth}>
+            <span class="top-key"></span>
+            <span class="text">PREVIOUS</span>
+            <span class="bottom-key-1"></span>
+            <span class="bottom-key-2"></span>
+          </a>
+          <h3 className='monthAndYearTitle'>{months[currentMonth]} {currentYear}</h3>
+          <a class="fancy" onClick={handleNextMonth}>
+            <span class="top-key"></span>
+            <span class="text">NEXT</span>
+            <span class="bottom-key-1"></span>
+            <span class="bottom-key-2"></span>
+          </a>
+        </div>
+
+        <div className="calendari">
+          {renderCalendari()}
+        </div>
+      </div>
+    </>
   );
 };
 

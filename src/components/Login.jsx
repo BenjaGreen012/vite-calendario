@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import ReceptesController from './controllers/ReceptesController';
+import ReceptesController from '../controllers/ReceptesController';
 
 const UserList = () => {
   const [users, setUsers] = useState([]);

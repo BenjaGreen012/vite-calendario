@@ -1,0 +1,79 @@
+.containerCalendar {
+  background-image: url("./fondos/fondo.webp");
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  padding: 10px;
+}
+
+.calendari {
+  max-width: 600px;
+  margin: auto;
+  text-align: center;
+  font-family: Arial, sans-serif;
+  
+  text-align: center;
+  padding-top: 10px;
+}
+
+.monthAndYearTitle {
+  text-align: center;
+  padding-top: 10px;
+  margin: auto;
+}
+
+.month {
+  margin-bottom: 20px;
+}
+
+.month h3 {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
+
+.days-of-week {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+  padding: 5px 0;
+}
+
+.day-name {
+  width: 100%;
+  font-weight: bold;
+}
+
+.days {
+  display: grid;
+  color: white;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 10px;
+}
+
+.carta {
+  background-color: transparent;
+  background-image: url("./elementos/huella.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 70px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  backdrop-filter: blur(10px);
+}
+
+.empty {
+  visibility: hidden;
+}
+
+.buttonsContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center; 
+  padding-top: 10px;
+  margin: auto;
+}

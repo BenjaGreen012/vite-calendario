@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import ReceptesController from './controllers/ReceptesController';
+import ReceptesController from '../controllers/ReceptesController';
 
 const Register = () => {
   const [username, setUsername] = useState('');
