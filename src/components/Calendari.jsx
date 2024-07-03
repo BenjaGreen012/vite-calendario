@@ -17,7 +17,7 @@ const Calendari = () => {
   const [currentMonth, setCurrentMonth] = useState(new Date().getMonth());
   const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
   const [notes, setNotes] = useState({});
-  const [currentNote, setCurrentNote] = useState('');
+  const [Nota, setNota] = useState('');
 
   const handlePreviousMonth = () => {
     if (currentMonth === 0) {
@@ -42,9 +42,9 @@ const Calendari = () => {
     const day = event.target.dataset.day;
     setNotes({
       ...notes,
-      [`${currentYear}-${currentMonth}-${day}`]: currentNote,
+      [`${currentYear}-${currentMonth}-${day}`]: Nota,
     });
-    setCurrentNote('');
+    setNota('');
   };
 
   const renderCalendari = () => {
@@ -121,8 +121,8 @@ const Calendari = () => {
 
         <form className='note-form' onSubmit={handleAddNote}>
           <textarea 
-            value={currentNote} 
-            onChange={(e) => setCurrentNote(e.target.value)} 
+            value={Nota} 
+            onChange={(e) => setNota(e.target.value)} 
             placeholder="Add a note" 
             className="note-input"
           />
