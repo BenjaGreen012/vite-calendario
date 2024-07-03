@@ -103,23 +103,25 @@ const Calendari = () => {
   return (
     <>
       <div className='containerCalendar'>
-        <div className='buttonsContainer'>
-          <a className="fancy" onClick={handlePreviousMonth}>
-            <span className="top-key"></span>
-            <span className="text">PREVIOUS</span>
-            <span className="bottom-key-1"></span>
-            <span className="bottom-key-2"></span>
-          </a>
-          <h3 className='monthAndYearTitle'>{months[currentMonth]} {currentYear}</h3>
-          <a className="fancy" onClick={handleNextMonth}>
-            <span className="top-key"></span>
-            <span className="text">NEXT</span>
-            <span className="bottom-key-1"></span>
-            <span className="bottom-key-2"></span>
-          </a>
-        </div>
-
-        <form className='note-form' onSubmit={handleAddNote}>
+        <div className='rightContainer'>
+          <div className='buttonsContainer'>
+            <a className="fancy" onClick={handlePreviousMonth}>
+              <span className="top-key"></span>
+              <span className="text">PREVIOUS</span>
+              <span className="bottom-key-1"></span>
+              <span className="bottom-key-2"></span>
+            </a>
+            <h3 className='monthAndYearTitle'>
+              {months[currentMonth]} {currentYear}
+            </h3>
+            <a className="fancy" onClick={handleNextMonth}>
+              <span className="top-key"></span>
+              <span className="text">NEXT</span>
+              <span className="bottom-key-1"></span>
+              <span className="bottom-key-2"></span>
+            </a>
+          </div>
+                  <form className='note-form' onSubmit={handleAddNote}>
           <textarea 
             value={Nota} 
             onChange={(e) => setNota(e.target.value)} 
@@ -128,9 +130,9 @@ const Calendari = () => {
           />
           <button type="submit" data-day={new Date().getDate()} className="add-note-button">Add Note</button>
         </form>
-
-        <div className="calendari">
-          {renderCalendari()}
+          <div className="calendari">
+            {renderCalendari()}
+          </div>
         </div>
       </div>
     </>
