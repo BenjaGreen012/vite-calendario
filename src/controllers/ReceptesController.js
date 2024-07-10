@@ -1,4 +1,5 @@
 const APIURL = 'https://app.nocodb.com/api/v2/tables/mzrez8biir12lbv/records';
+const APINotas = 'https://app.nocodb.com/api/v2/tables/m0n77ue00c1jaj4/records';
 const TOKEN = 'YyW9oupEhP-p23YRvn3PhPZcR7R77tAtncQAPaAz';
 
 class ReceptesController {
@@ -31,6 +32,32 @@ class ReceptesController {
 
         const data = await response.json();
         return data;
+    }
+
+    async getNotasByDate(fecha, userId) {
+        const response = await fetch(`${APINotas}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'xc-token': this.token
+            }
+        });
+    }
+
+    async updateNota(fecha, record, userId) {
+        const response = await fetch(`${APINotas}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'xc-token': this.token
+            },
+            body: JSON.stringify({
+                date: fecha,
+                record: record,
+                userId: userId
+            })
+        });
+       
     }
 
     async registerUser(username, password) {
