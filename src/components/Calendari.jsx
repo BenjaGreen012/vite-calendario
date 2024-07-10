@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import Carta from '../Carta';
+import ReceptesController from '../controllers/ReceptesController';
+import LoginContext from './LoginContext';
 import '../styles/Calendari.css';
 import '../styles/ButtonNextBack.css';
 
@@ -13,11 +15,46 @@ const getDaysInMonth = (month, year) => {
   return new Date(year, month + 1, 0).getDate();
 };
 
+const formatTwoDigits = (number) => {
+  return number < 10 ? `0${number}` : number;
+};
+
 const Calendari = () => {
   const [currentMonth, setCurrentMonth] = useState(new Date().getMonth());
   const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
   const [notes, setNotes] = useState({});
   const [Nota, setNota] = useState('');
+  const { user } = useContext(LoginContext);
+  const [fecha, setFecha] = useState(new Date().toISOString().slice(0, 10));
+  const [selectedDay, setSelectedDay] = useState(null);
+  const [selectedDayNotes, setSelectedDayNotes] = useState([]);
+  const receptesController = new ReceptesController();
+
+  useEffect(() => {
+    if (selectedDay) {
+      fetchNotesForSelectedDay(selectedDay);
+    }
+  }, [selectedDay]);
+
+  const fetchNotesForSelectedDay = async (day) => {
+    if (!user || !user.Id) {
+      console.error('User is not defined');
+      return;
+    }
+
+    const selectedDate = `${currentYear}-${formatTwoDigits(currentMonth + 1)}-${formatTwoDigits(day)}`;
+    try {
+      const notesData = await receptesController.getNotaByIdDate(selectedDate, user.Id);
+      if (notesData) {
+        setSelectedDayNotes(notesData);
+      } else {
+        setSelectedDayNotes([]);
+      }
+    } catch (error) {
+      console.error('Error fetching notes:', error);
+      setSelectedDayNotes([]);
+    }
+  };
 
   const handlePreviousMonth = () => {
     if (currentMonth === 0) {
@@ -37,14 +74,12 @@ const Calendari = () => {
     }
   };
 
-  const handleAddNote = (event) => {
+  const handleAddNote = async (event) => {
     event.preventDefault();
-    const day = event.target.dataset.day;
-    setNotes({
-      ...notes,
-      [`${currentYear}-${currentMonth}-${day}`]: Nota,
-    });
-    setNota('');
+    await receptesController.createNota(fecha, Nota, user.Id);
+    if (selectedDay) {
+      fetchNotesForSelectedDay(selectedDay);
+    }
   };
 
   const renderCalendari = () => {
@@ -79,8 +114,9 @@ const Calendari = () => {
 
     // Add all days of the current month
     for (let day = 1; day <= daysInMonth; day++) {
-      const note = notes[`${currentYear}-${currentMonth}-${day}`];
-      days.push(<Carta key={`day-${day}`} day={day} isEmpty={false} note={note} />);
+      const selectedDate = `${currentYear}-${formatTwoDigits(currentMonth + 1)}-${formatTwoDigits(day)}`;
+      const note = notes[selectedDate];
+      days.push(<Carta key={`day-${day}`} day={day} isEmpty={false} note={note} onClick={() => setSelectedDay(day)} />);
     }
 
     // Add empty days for the last week
@@ -103,7 +139,7 @@ const Calendari = () => {
   return (
     <>
       <div className='containerCalendar'>
-        <div className='rightContainer'>
+        <div className='leftContainer'>
           <div className='buttonsContainer'>
             <a className="fancy" onClick={handlePreviousMonth}>
               <span className="top-key"></span>
@@ -121,18 +157,35 @@ const Calendari = () => {
               <span className="bottom-key-2"></span>
             </a>
           </div>
-                  <form className='note-form' onSubmit={handleAddNote}>
-          <textarea 
-            value={Nota} 
-            onChange={(e) => setNota(e.target.value)} 
-            placeholder="Add a note" 
-            className="note-input"
-          />
-          <button type="submit" data-day={new Date().getDate()} className="add-note-button">Add Note</button>
-        </form>
           <div className="calendari">
             {renderCalendari()}
           </div>
+        </div>
+        <div className='rightContainer'>
+          {selectedDay && (
+            <div className='notesContainer'>
+              <h3>Notes for {formatTwoDigits(selectedDay)}/{formatTwoDigits(currentMonth + 1)}/{currentYear}</h3>
+              {selectedDayNotes && selectedDayNotes.length > 0 ? (
+                selectedDayNotes.map((note, index) => (
+                  <div key={index} className="note">
+                    {note.record}
+                  </div>
+                ))
+              ) : (
+                <p>No notes for this day.</p>
+              )}
+            </div>
+          )}
+          <form className='note-form' onSubmit={handleAddNote}>
+            <input type='date' value={fecha} onChange={(e) => setFecha(e.target.value)}></input>
+            <textarea 
+              value={Nota}
+              onChange={(e) => setNota(e.target.value)} 
+              placeholder="Add a note" 
+              className="note-input"
+            />
+            <button type="submit" className="add-note-button">Add Note</button>
+          </form>
         </div>
       </div>
     </>
