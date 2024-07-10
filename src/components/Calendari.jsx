@@ -3,7 +3,6 @@ import Carta from '../Carta';
 import ReceptesController from '../controllers/ReceptesController';
 import LoginContext from './LoginContext';
 import '../styles/Calendari.css';
-import '../styles/ButtonAddNote.css';
 import '../styles/ButtonNextBack.css';
 
 const daysOfWeek = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'];
@@ -158,7 +157,7 @@ const Calendari = () => {
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       xmlns:xlink="http://www.w3.org/1999/xlink"
-                      fill="white" version="1.1" id="Capa_1"
+                      fill="black" version="1.1" id="Capa_1"
                       viewBox="0 0 45.402 45.402"
                       xml:space="preserve"
                       width="20"
@@ -176,8 +175,7 @@ const Calendari = () => {
           </div>
           {selectedDay && (
             <div className='notesContainer'>
-              <h3>Notes for {formatTwoDigits(selectedDay)}/{formatTwoDigits(currentMonth + 1)}/{currentYear}</h3>
-              {selectedDayNotes && selectedDayNotes.length > 0 ? (
+              <h4 style={{borderBottom: '1px solid black'}}>Notes for {formatTwoDigits(selectedDay)}/{formatTwoDigits(currentMonth + 1)}/{currentYear}</h4>              {selectedDayNotes && selectedDayNotes.length > 0 ? (
                 selectedDayNotes.map((note, index) => (
                   <div key={index} className="note">
                     {note.record}

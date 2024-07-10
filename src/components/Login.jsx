@@ -11,7 +11,7 @@ const UserList = () => {
   const [searchPassword, setSearchPassword] = useState(''); // Estado para la contraseña ingresada
   const [loggedIn, setLoggedIn] = useState(false); // Estado para manejar si el usuario está logueado
   const { setUser } = useContext(LoginContext); // Contexto de login para manejar el usuario actual
-  
+
   const receptesController = new ReceptesController(); // Controlador para obtener usuarios
   const navigate = useNavigate(); // Hook para navegación
 
@@ -38,13 +38,13 @@ const UserList = () => {
       setLoggedIn(true); // Establecer como logueado
       setError(null); // Limpiar cualquier error previo
       setUser(filtered[0]); // Establecer el usuario en el contexto
-      
+
       // Almacenar información en localStorage
       localStorage.setItem('loggedInUser', JSON.stringify(filtered[0]));
     } else {
       setLoggedIn(false); // Establecer como no logueado
       setError('Usuario o contraseña incorrecta.'); // Establecer mensaje de error
-      
+
       // Eliminar cualquier información previa en localStorage si el login falla
       localStorage.removeItem('loggedInUser');
     }
@@ -88,7 +88,7 @@ const UserList = () => {
         </div>
 
         <div class="brutalist-container">
-        <input
+          <input
             className='brutalist-input smooth-type'
             type="password"
             name='text'
@@ -98,9 +98,12 @@ const UserList = () => {
           />
           <label class="brutalist-label">Password</label>
         </div>
-        <button className='loginBt' onClick={handleSearch}>Login</button>
-        <button className='registerBt' onClick={handleRegister}>Register</button>
       </div>
+      <div className='loginRegisterContainer'>
+        <button className=' btn loginBt' onClick={handleSearch}>Login</button>
+        <button className='btn registerBt' onClick={handleRegister}>Register</button>
+      </div>
+
       {error && <p style={{ color: 'red' }}>{error}</p>}
     </div>
   );
