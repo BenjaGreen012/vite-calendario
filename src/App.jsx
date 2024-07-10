@@ -60,7 +60,6 @@ function App() {
             </Navbar.Collapse>
           </Container>
         </Navbar>
-        <br />
         <Outlet /> {/* Renderiza los componentes de las rutas hijas */}
       </LoginContext.Provider>
     </>
