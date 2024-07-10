@@ -2,6 +2,7 @@ import React, { useEffect, useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ReceptesController from '../controllers/ReceptesController';
 import LoginContext from './LoginContext';
+import '../styles/Login.css';
 
 const UserList = () => {
   const [users, setUsers] = useState([]); // Lista de todos los usuarios
@@ -10,7 +11,7 @@ const UserList = () => {
   const [searchPassword, setSearchPassword] = useState(''); // Estado para la contraseña ingresada
   const [loggedIn, setLoggedIn] = useState(false); // Estado para manejar si el usuario está logueado
   const { setUser } = useContext(LoginContext); // Contexto de login para manejar el usuario actual
-  
+
   const receptesController = new ReceptesController(); // Controlador para obtener usuarios
   const navigate = useNavigate(); // Hook para navegación
 
@@ -27,7 +28,7 @@ const UserList = () => {
     }
 
     fetchUsers();
-  }, [receptesController]);
+  }, []);
 
   // Función para manejar el login
   function handleSearch() {
@@ -37,13 +38,13 @@ const UserList = () => {
       setLoggedIn(true); // Establecer como logueado
       setError(null); // Limpiar cualquier error previo
       setUser(filtered[0]); // Establecer el usuario en el contexto
-      
+
       // Almacenar información en localStorage
       localStorage.setItem('loggedInUser', JSON.stringify(filtered[0]));
     } else {
       setLoggedIn(false); // Establecer como no logueado
       setError('Usuario o contraseña incorrecta.'); // Establecer mensaje de error
-      
+
       // Eliminar cualquier información previa en localStorage si el login falla
       localStorage.removeItem('loggedInUser');
     }
@@ -72,23 +73,37 @@ const UserList = () => {
 
   return (
     <div>
-      <h1>Login</h1>
-      <div>
-        <input
-          type="text"
-          placeholder="Usuario"
-          value={searchUsername}
-          onChange={(e) => setSearchUsername(e.target.value)}
-        />
-        <input
-          type="password"
-          placeholder="Contraseña"
-          value={searchPassword}
-          onChange={(e) => setSearchPassword(e.target.value)}
-        />
-        <button onClick={handleSearch}>Login</button>
-        <button onClick={handleRegister}>Register</button>
+      <h1 className='titleLogin'>Login</h1>
+      <div className='form'>
+        <div class="brutalist-container">
+          <input
+            className='brutalist-input smooth-type'
+            type="text"
+            name='text'
+            placeholder="Usuario"
+            value={searchUsername}
+            onChange={(e) => setSearchUsername(e.target.value)}
+          />
+          <label class="brutalist-label">Name</label>
+        </div>
+
+        <div class="brutalist-container">
+          <input
+            className='brutalist-input smooth-type'
+            type="password"
+            name='text'
+            placeholder="Contraseña"
+            value={searchPassword}
+            onChange={(e) => setSearchPassword(e.target.value)}
+          />
+          <label class="brutalist-label">Password</label>
+        </div>
       </div>
+      <div className='loginRegisterContainer'>
+        <button className=' btn loginBt' onClick={handleSearch}>Login</button>
+        <button className='btn registerBt' onClick={handleRegister}>Register</button>
+      </div>
+
       {error && <p style={{ color: 'red' }}>{error}</p>}
     </div>
   );

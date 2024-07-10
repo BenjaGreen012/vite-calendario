@@ -1,7 +1,7 @@
 import React from 'react';
 import './Carta.css';
 
-const Carta = ({ day, isEmpty, isPreviousMonth, isNextMonth, note }) => {
+const Carta = ({ day, isEmpty, isPreviousMonth, isNextMonth, note, onClick }) => {
   let cartaClass = 'carta';
   
   if (isPreviousMonth) {
@@ -13,9 +13,11 @@ const Carta = ({ day, isEmpty, isPreviousMonth, isNextMonth, note }) => {
   }
 
   return (
-    <div className={cartaClass}>
+    <div className={cartaClass} onClick={onClick}>
       <div className="day-number">{day}</div>
-      {note && <div className="note">{note}</div>}
+      {note && note.length > 0 && note.map((n, index) => (
+        <div key={index} className="note">{n.record}</div>
+      ))}
     </div>
   );
 };
