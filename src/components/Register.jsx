@@ -36,41 +36,50 @@ const Register = () => {
   };
 
   return (
-    <div>
+    <div className='form'>
       <h2>Registro de Usuario</h2>
       <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="username">Nombre de usuario:</label>
-          <input
-            type="text"
-            id="username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            required
-          />
+        <div className='form'>
+          <div class="brutalist-container">
+            <input
+              className='brutalist-input smooth-type'
+              type="text"
+              placeholder="Username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              required
+            />
+            <label class="brutalist-label">Nombre de usuario:</label>
+          </div>
+
+
+          <div class="brutalist-container">
+            <input
+              className='brutalist-input smooth-type'
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+            <label class="brutalist-label">Contraseña:</label>
+          </div>
+          <div class="brutalist-container">
+            <input
+              className='brutalist-input smooth-type'
+              type="password"
+              placeholder="Repeat Password"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              required
+            />
+            <label class="brutalist-label">Confirmar Contraseña:</label>
+          </div>
         </div>
-        <div>
-          <label htmlFor="password">Contraseña:</label>
-          <input
-            type="password"
-            id="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </div>
-        <div>
-          <label htmlFor="confirmPassword">Confirmar Contraseña:</label>
-          <input
-            type="password"
-            id="confirmPassword"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-            required
-          />
-        </div>
+
         {passwordError && <p style={{ color: 'red' }}>{passwordError}</p>}
-        <button type="submit">Registrarse</button>
+        <button type="submit" className='btn'>Registrarse</button>
+        
       </form>
     </div>
   );

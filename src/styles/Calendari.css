@@ -128,18 +128,18 @@
   height: 50px;
   width: fit-content;
   margin: auto;
-  margin-top: 10px;
+  margin-top: 30px;
   font-family: inherit;
   font-size: 20px;
-  background: #212121;
-  color: white;
+  background: white;
+  color: black;
   fill: rgb(155, 153, 153);
   padding: 0.7em 1em;
   padding-left: 0.9em;
   display: flex;
   align-items: center;
   cursor: pointer;
-  border: none;
+  border: 1px solid black;
   border-radius: 15px;
   font-weight: 1000;
 }
@@ -178,4 +178,17 @@
 
 .add-note-button:active {
   transform: scale(0.95);
+}
+
+/* 
+notesContainer
+*/
+
+.notesContainer{
+  font-size: 20px;
+  margin:10px;
+  padding: 10px;
+  border: 1px solid black;
+  backdrop-filter: brightness(110%);
+  font-weight: bold;
 }
