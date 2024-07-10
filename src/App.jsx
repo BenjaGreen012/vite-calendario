@@ -1,14 +1,26 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Navbar, Nav, Container } from 'react-bootstrap';
 import { Outlet, NavLink } from "react-router-dom";
 import './App.css';
 import LoginContext from './components/LoginContext';
 
 function App() {
-  const [user, setUser] = React.useState(null);
-  const handleLogout = () => {
-    setUser(null);
-  };
+  const [user, setUser] = useState(null); // Estado para manejar el usuario logueado
+
+  useEffect(() => {
+    // Comprobar si hay un usuario logueado en localStorage al cargar la aplicación
+    const loggedInUser = localStorage.getItem('loggedInUser');
+    if (loggedInUser) {
+      setUser(JSON.parse(loggedInUser));
+    }
+  }, []);
+
+  // Función para manejar el logout del usuario
+  function handleLogout() {
+    setUser(null); // Limpiar el estado del usuario
+    localStorage.removeItem('loggedInUser'); // Eliminar el usuario del localStorage al hacer logout
+  }
+
   return (
     <>
       <LoginContext.Provider value={{ user, setUser }}>
@@ -19,18 +31,37 @@ function App() {
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="me-auto">
                 {user === null ? (
+                  // Mostrar enlaces de Login y Register si no hay usuario logueado
                   <>
-                    <NavLink to="/login" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>Login</NavLink>
-                    <NavLink to="/register" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>Register</NavLink>
+                    <NavLink 
+                      to="/login" 
+                      className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}
+                    >
+                      Login
+                    </NavLink>
+                    <NavLink 
+                      to="/register" 
+                      className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}
+                    >
+                      Register
+                    </NavLink>
                   </>
                 ) : (
-                  <NavLink onClick={handleLogout}>Logout</NavLink>
+                  // Mostrar enlace de Logout si hay un usuario logueado
+                  <NavLink 
+                    to="/" 
+                    className="nav-link" 
+                    onClick={handleLogout}
+                  >
+                    Logout
+                  </NavLink>
                 )}
               </Nav>
             </Navbar.Collapse>
           </Container>
         </Navbar>
-          <Outlet />
+        <br />
+        <Outlet /> {/* Renderiza los componentes de las rutas hijas */}
       </LoginContext.Provider>
     </>
   );
