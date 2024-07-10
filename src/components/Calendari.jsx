@@ -3,6 +3,7 @@ import Carta from '../Carta';
 import ReceptesController from '../controllers/ReceptesController';
 import LoginContext from './LoginContext';
 import '../styles/Calendari.css';
+import '../styles/ButtonAddNote.css';
 import '../styles/ButtonNextBack.css';
 
 const daysOfWeek = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'];
@@ -140,6 +141,21 @@ const Calendari = () => {
     <>
       <div className='containerCalendar'>
         <div className='leftContainer'>
+          <div className='backgroundNotes'>
+          <form className='note-form' onSubmit={handleAddNote}>
+            <input type='date' value={fecha} onChange={(e) => setFecha(e.target.value)}></input>
+            <textarea 
+              value={Nota}
+              onChange={(e) => setNota(e.target.value)} 
+              placeholder="Add a note" 
+              className="note-input"
+            />
+            <button type="submit" className="add-note-button">Add Note</button>
+          </form>
+          </div>
+        </div>
+
+        <div className='rightContainer'>
           <div className='buttonsContainer'>
             <a className="fancy" onClick={handlePreviousMonth}>
               <span className="top-key"></span>
@@ -176,16 +192,6 @@ const Calendari = () => {
               )}
             </div>
           )}
-          <form className='note-form' onSubmit={handleAddNote}>
-            <input type='date' value={fecha} onChange={(e) => setFecha(e.target.value)}></input>
-            <textarea 
-              value={Nota}
-              onChange={(e) => setNota(e.target.value)} 
-              placeholder="Add a note" 
-              className="note-input"
-            />
-            <button type="submit" className="add-note-button">Add Note</button>
-          </form>
         </div>
       </div>
     </>
