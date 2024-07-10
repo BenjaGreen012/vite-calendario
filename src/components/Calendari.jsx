@@ -55,8 +55,9 @@ const Calendari = () => {
       console.error('Error fetching notes:', error);
       setSelectedDayNotes([]);
     }
-  };
+    console.log(selectedDate);
 
+  };
   const handlePreviousMonth = () => {
     if (currentMonth === 0) {
       setCurrentMonth(11);
@@ -77,7 +78,8 @@ const Calendari = () => {
 
   const handleAddNote = async (event) => {
     event.preventDefault();
-    await receptesController.createNota(fecha, Nota, user.Id);
+    const selectedDate = `${currentYear}-${formatTwoDigits(currentMonth + 1)}-${formatTwoDigits(selectedDay)}`;
+    await receptesController.createNota(selectedDate, Nota, user.Id);
     if (selectedDay) {
       fetchNotesForSelectedDay(selectedDay);
     }
@@ -143,7 +145,6 @@ const Calendari = () => {
         <div className='leftContainer'>
           <div className='backgroundNotes'>
           <form className='note-form' onSubmit={handleAddNote}>
-            <input type='date' value={fecha} onChange={(e) => setFecha(e.target.value)}></input>
             <textarea 
               value={Nota}
               onChange={(e) => setNota(e.target.value)} 
