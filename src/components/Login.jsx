@@ -28,7 +28,7 @@ const UserList = () => {
     }
 
     fetchUsers();
-  }, [receptesController]);
+  }, []);
 
   // Función para manejar el login
   function handleSearch() {
