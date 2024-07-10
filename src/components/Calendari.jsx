@@ -105,16 +105,17 @@ const Calendari = () => {
     <>
       <div className='containerCalendar'>
         <div className='leftContainer'>
-          <div>
+          <div className='backgroundNotes'>
             <form className='note-form' onSubmit={handleAddNote}>
               <textarea
                 value={Nota}
-                onChange={(e) => setNota(e.target.value)}
+                onChange={(e) => setNota(e.target.value.split('\n').slice(0, 6).join('\n'))}
                 placeholder="Add a note"
+                rows={6}
                 className="note-input"
               />
               <button type="submit" data-day={new Date().getDate()} className="add-note-button btn">
-                Add Note
+                +
               </button>
             </form>
           </div>

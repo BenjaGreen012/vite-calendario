@@ -4,12 +4,8 @@
   background-repeat: no-repeat;
   height: 92vh;
   width: 100vw;
-  display: flex;
-}
-
-.leftContainer{
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
 }
 
 .rightContainer {
@@ -22,7 +18,7 @@
   margin: auto;
   text-align: center;
   font-family: Arial, sans-serif;
-  backdrop-filter:  brightness(90%);
+  backdrop-filter: brightness(90%);
   text-align: center;
   padding-top: 10px;
 }
@@ -72,8 +68,8 @@
   background-image: url("./elementos/huella.png");
   background-repeat: no-repeat;
   background-size: cover;
-  height: 70px;
-  width: 70px;
+  height: 60px;
+  width: 60px;
   border: 1px solid white;
   padding: 10px;
   backdrop-filter: blur(10px);
@@ -90,30 +86,51 @@
   max-width: 600px;
   margin: auto;
 }
+
+.monthAndYearTitle {
+  border-bottom: 2px solid black;
+  color: white;
+  text-shadow: 2px 2px black;
+}
+
+
+.leftContainer {
+  margin: auto;
+}
+
+
 /* Calendari.css */
 .note-form {
   display: flex;
-  align-items: center;
-  margin-bottom: 20px;
+  flex-direction: column;
+}
+
+.backgroundNotes {
+  background-image: url("./elementos/stikyNote.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: fit-content;
 }
 
 .note-input {
   flex: 1;
   padding: 8px;
   font-size: 14px;
-  border: 1px solid #ccc;
+  border: none;
   border-radius: 4px;
-  height: 100px; /* Adjust this height to make the textarea taller */
-  resize: none; /* Prevents resizing */
+  height: 100px;
+  resize: none;
+  width: 150px;
+  background-color: transparent;
+  margin: 30px;
+  outline: none;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 6;
+  -webkit-box-orient: vertical;
 }
 
 .add-note-button {
-  margin: 20px;
-  
-}
-
-.monthAndYearTitle {
-  border-bottom: 2px solid black;
-  color: white;
-  text-shadow: 2px 2px black;
+  margin: 10px auto;
 }
