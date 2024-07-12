@@ -1,5 +1,5 @@
 .containerCalendar {
-  background-image: url("./fondos/fondoMain.jpg");
+  background-image: url("/fondos/fondoMain.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   height: 92vh;
