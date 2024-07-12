@@ -65,7 +65,7 @@
 
 .carta {
   background-color: transparent;
-  background-image: url("./elementos/huella.png");
+  background-image: url("/elementos/huella.png");
   background-repeat: no-repeat;
   background-size: cover;
   height: 60px;
