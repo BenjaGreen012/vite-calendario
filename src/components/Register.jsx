@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import ReceptesController from '../controllers/ReceptesController';
+import '../styles/Register.css'
 
 const Register = () => {
   const [username, setUsername] = useState('');
@@ -78,7 +79,7 @@ const Register = () => {
         </div>
 
         {passwordError && <p style={{ color: 'red' }}>{passwordError}</p>}
-        <button type="submit" className='btn'>Registrarse</button>
+        <button type="submit" className='btnR'>Registrarse</button>
         
       </form>
     </div>

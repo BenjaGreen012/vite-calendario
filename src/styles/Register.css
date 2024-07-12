@@ -212,8 +212,9 @@
 
 
 /* Button login and register styles */
-.btn {
+.btnR {
     display: inline-block;
+    margin-top: 10%;
     padding: 0.9rem 1.8rem;
     font-size: 16px;
     font-weight: 700;
@@ -229,7 +230,7 @@
     width: fit-content;
 }
 
-.btn::before {
+.btnR::before {
     content: "";
     position: absolute;
     left: 0;
@@ -242,6 +243,6 @@
     z-index: -1;
 }
 
-.btn:hover::before {
+.btnR:hover::before {
     transform: translateX(0);
 }
