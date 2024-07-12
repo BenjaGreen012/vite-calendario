@@ -1,5 +1,5 @@
 .containerCalendar {
-  background-image: url("./fondos/fondoMain.jpg");
+  background-image: url("/fondos/fondoMain.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   height: 92vh;
@@ -65,7 +65,7 @@
 
 .carta {
   background-color: transparent;
-  background-image: url("./elementos/huella.png");
+  background-image: url("/elementos/huella.png");
   background-repeat: no-repeat;
   background-size: cover;
   height: 60px;
@@ -106,7 +106,7 @@
 }
 
 .backgroundNotes {
-  background-image: url("./elementos/stikyNote.png");
+  background-image: url("/elementos/stikyNote.png");
   background-repeat: no-repeat;
   background-size: contain;
   width: fit-content;
