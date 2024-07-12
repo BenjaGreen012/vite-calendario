@@ -106,7 +106,7 @@
 }
 
 .backgroundNotes {
-  background-image: url("./elementos/stikyNote.png");
+  background-image: url("/elementos/stikyNote.png");
   background-repeat: no-repeat;
   background-size: contain;
   width: fit-content;
