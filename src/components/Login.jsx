@@ -72,9 +72,9 @@ const UserList = () => {
   }
 
   return (
-    <div>
+    <div className='form'>
       <h1 className='titleLogin'>Login</h1>
-      <div className='form'>
+      <div>
         <div class="brutalist-container">
           <input
             className='brutalist-input smooth-type'
@@ -87,7 +87,7 @@ const UserList = () => {
           <label class="brutalist-label">Name</label>
         </div>
 
-        <div class="brutalist-container">
+        <div style={{marginTop:"11%"}} class="brutalist-container">
           <input
             className='brutalist-input smooth-type'
             type="password"

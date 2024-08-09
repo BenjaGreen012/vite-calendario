@@ -1,5 +1,5 @@
 .containerCalendar {
-  background-image: url("/fondos/fondoMain.jpg");
+  background-color: rgb(189, 144, 131);
   background-size: cover;
   background-repeat: no-repeat;
   height: 92vh;
@@ -18,13 +18,13 @@
   margin: auto;
   text-align: center;
   font-family: Arial, sans-serif;
-  backdrop-filter: brightness(90%);
   text-align: center;
   padding-top: 10px;
 }
 
 .month {
   margin-bottom: 20px;
+  background-color: #4C3427;
 }
 
 .month h3 {
@@ -43,20 +43,14 @@
 
 .day-name {
   background-color: transparent;
-  color: black;
-  text-shadow: 2px 2px 4px white;
+  color: rgb(222, 180, 167);
   width: 100%;
   font-weight: bold;
 }
 
 .days {
   display: grid;
-  color: white;
-  text-shadow:
-    3px 3px 0 #000,
-    -3px 3px 0 #000,
-    -3px -3px 0 #000,
-    3px -3px 0 #000;
+  color: black;
   font-weight: bold;
   font-size: 20px;
   grid-template-columns: repeat(7, 1fr);
@@ -64,9 +58,8 @@
 }
 
 .carta {
-  background-color: transparent;
-  background-image: url("/elementos/huella.png");
   background-repeat: no-repeat;
+  background-color: #795F4A;
   background-size: cover;
   height: 60px;
   width: 60px;
