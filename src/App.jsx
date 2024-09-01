@@ -24,9 +24,9 @@ function App() {
   return (
     <>
       <LoginContext.Provider value={{ user, setUser }}>
-        <Navbar bg="light" expand="lg">
+        <Navbar expand="lg" style={{ backgroundColor: '#4C3427'}}>
           <Container>
-            <NavLink to="/" className="navbar-brand">Calendario</NavLink>
+            <NavLink to="/" className="navbar-brand" style={{color:"white"}}>Calendario</NavLink>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="me-auto">
@@ -36,12 +36,14 @@ function App() {
                     <NavLink 
                       to="/login" 
                       className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}
+                      style={{ color: 'white' }}
                     >
                       Login
                     </NavLink>
                     <NavLink 
                       to="/register" 
                       className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}
+                      style={{ color: 'white' }}
                     >
                       Register
                     </NavLink>

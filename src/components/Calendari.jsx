@@ -97,10 +97,6 @@ const Calendari = () => {
     const previousMonth = currentMonth === 0 ? 11 : currentMonth - 1;
     const previousYear = currentMonth === 0 ? currentYear - 1 : currentYear;
 
-    // Determine the next month and year
-    const nextMonth = currentMonth === 11 ? 0 : currentMonth + 1;
-    const nextYear = currentMonth === 11 ? currentYear + 1 : currentYear;
-
     // Add empty days for the first week
     for (let i = 0; i < adjustedFirstDay; i++) {
       const prevMonthDays = getDaysInMonth(previousMonth, previousYear);
